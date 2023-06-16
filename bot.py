@@ -11,20 +11,13 @@ GUILD = os.getenv('DISCORD_GUILD')
 client = discord.Client(intents=discord.Intents.all())
 tree = discord.app_commands.CommandTree(client)
 
-
-
-
 @tree.command(name = "respond", description = "my first application command", guild=discord.Object(id=223167064112627714)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
 async def first_command(interaction):
     await interaction.response.send_message("Hei, jeg lever")
 
-
-
-
 @tree.command(name = "download_yt_audio", description = "Give me a URL to extract audio from", guild=discord.Object(id=223167064112627714))
 async def seccond_command(interaction: discord.Interaction, text: str):
     await interaction.response.defer()
-    
     brukerid = interaction.user.id
     mp3_filepath = fr'C:\Users\ander\Documents\Progging\DiscordBotPython\{brukerid}.mp3'
     ydl_opts = {
@@ -49,19 +42,6 @@ async def seccond_command(interaction: discord.Interaction, text: str):
     await interaction.followup.send("Sjekk postkassen din. Mvh")
     
     os.remove(mp3_filepath) 
-
-
-
-
-
-@tree.command(name = "play", description = "Play audio from YT", guild=discord.Object(id=223167064112627714))
-async def third_command(interaction: discord.Interaction, text: str):
-     await interaction.response.defer()
-
-
-
-
-     await interaction.followup.send("Jeg spiller nå av: {URL}")
 
 @client.event
 async def on_ready():
